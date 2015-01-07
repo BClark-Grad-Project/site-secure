@@ -1,0 +1,13 @@
+{
+  "name": "site-secure",
+  "author": "Brandon L. Clark",
+  "description": "Create and bind secured sessions for the site-template project.",
+  "version": "0.1.0",
+  "license": "MIT",
+  "main": "index.js",
+  "private": true,
+  "dependencies": {
+    "express-session": "~1.9.1",
+    "node-uuid": "~1.4.1"
+  }
+}
