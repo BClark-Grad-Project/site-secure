@@ -29,9 +29,9 @@ module.exports.create = function(){
 module.exports.register = function(req, res, next){
 	if(!req.session.user){
 		var sess = req.session;
-		sess.user = {credential: {type:  'guest'}, 
-				     detail:     {first: 'Guest', 
-				    	          last:  'User'}
+		sess.user = {credentials: {type:  'guest'}, 
+				     detail:      {first: 'Guest', 
+				    	           last:  'User'}
 			         };
 	}
 	return next();
