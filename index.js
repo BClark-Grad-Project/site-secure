@@ -39,8 +39,8 @@ module.exports.register = function(req, res, next){
 	
 module.exports.options = function(){
 	return {
-		key:  fs.readFileSync('./ssl-tls/key.pem'),
-		cert: fs.readFileSync('./ssl-tls/certificate.pem'),
+		key:  fs.readFileSync('/opt/ssl/key.pem'),
+		cert: fs.readFileSync('/opt/ssl/certificate.pem'),
 		requestCert: true
 	};
 }; 
