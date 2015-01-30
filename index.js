@@ -46,7 +46,7 @@ module.exports.options = function(){
 }; 
 
 module.exports.port = function(){
-	return process.env.PORT || 3443;
+	return process.env.PORT || 443;
 };
 
 // Destroy registered user session.
