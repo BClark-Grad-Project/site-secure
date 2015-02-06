@@ -38,10 +38,13 @@ module.exports.register = function(req, res, next){
 };
 	
 module.exports.options = function(){
-	return {
-		key:  fs.readFileSync('/opt/ssl/key.pem'),
-		cert: fs.readFileSync('/opt/ssl/certificate.pem'),
-		requestCert: true
+	return {                
+		key:  fs.readFileSync('/opt/ssl/server-key.pem'),
+        cert: fs.readFileSync('/opt/ssl/a63034cf7240d1e1.crt'),
+        ca:  [fs.readFileSync('/opt/ssl/gd_bundle_01.crt'), 
+              fs.readFileSync('/opt/ssl/gd_bundle_02.crt')],
+        requestCert: true
+
 	};
 }; 
 
