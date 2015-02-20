@@ -29,10 +29,20 @@ module.exports.create = function(){
 module.exports.register = function(req, res, next){
 	if(!req.session.user){
 		var sess = req.session;
-		sess.user = {credentials: {type:  'guest'}, 
+		sess.user = {credentials: {alias: 'Guest'},
 				     detail:      {first: 'Guest', 
 				    	           last:  'User'}
 			         };
+
+		sess.user.authorizations = [];
+		sess.user.authorizations.push(
+						{service:
+							{code:req.locals.service_code,
+							 name:req.locals.service_name},
+				    	 access: 
+				    	 	{type:'guest',
+				    	     level: 0}
+						});
 	}
 	return next();
 };
