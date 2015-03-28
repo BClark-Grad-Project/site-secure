@@ -4,35 +4,26 @@
  * License: MIT
  */
 
-var fs      = require('fs');
-var config  = require('./conf');
-var uuid    = require('node-uuid');
-var mongo   = require('mongoose');
+var fs = require('fs');
+var uuid = require('node-uuid');
 var session = require('express-session');
-var MongoStore = require('connect-mongostore')(session);
-
-var conn = {};
-
-var dbConnection = function(){
-	var url = 'mongodb://' + config.mongo_host + ':' + config.mongo_port + '/' + config.db;
-	return url;
-};
-
-var url = dbConnection();
-conn = mongo.createConnection(url);	
 
 module.exports.create = function(){
 	// Session create
-	//var hour = 3600000;
+	var hour = 3600000;
 	
 	return session({ 
 		genid: function() {
 			  return uuid.v4();
 		},
 		secret: 'secret key',
+		key: 'connect.sid',
+		cookie: { 
+				  expires: new Date(Date.now() + hour),
+				  maxAge:  hour 
+		},
 		saveUninitialized: true,
-	    resave: true,
-	    store: new MongoStore({mongooseConnection: conn})
+    resave: true
 	});
 };
 
