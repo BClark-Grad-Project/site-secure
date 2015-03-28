@@ -17,7 +17,7 @@ module.exports.create = function(){
 			  return uuid.v4();
 		},
 		secret: 'secret key',
-		cookie: { secure:  true,
+		cookie: { secure:  false,
 				  expires: new Date(Date.now() + hour),
 				  maxAge:  hour 
 		},
