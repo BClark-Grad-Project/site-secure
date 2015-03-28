@@ -7,20 +7,15 @@
 var fs = require('fs');
 var uuid = require('node-uuid');
 var session = require('express-session');
+var MongoStore = require('connect-mongostore')(session);
 
-module.exports.create = function(){
-	// Session create
-	var hour = 3600000;
-	
+module.exports.create = function(){	
 	return session({ 
 		genid: function() {
 			  return uuid.v4();
 		},
+	    store: new MongoStore({'db': 'sessions'}),
 		secret: 'secret key',
-		cookie: { secure:  false,
-				  expires: new Date(Date.now() + hour),
-				  maxAge:  hour 
-		},
 		saveUninitialized: true,
 	    resave: true
 	});
