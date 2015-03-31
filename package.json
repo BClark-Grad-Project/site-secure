@@ -8,8 +8,6 @@
   "private": true,
   "dependencies": {
     "express-session": "~1.9.1",
-    "node-uuid": "~1.4.1",
-    "connect-mongostore": "~0.1.4",
-    "mongoose": "~3.8.17"
+    "node-uuid": "~1.4.1"
   }
 }

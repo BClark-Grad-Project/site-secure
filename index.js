@@ -8,23 +8,42 @@ var fs = require('fs');
 var uuid = require('node-uuid');
 var session = require('express-session');
 
+//module.exports.create = function(){
+//	// Session create
+//	var hour = 3600000;
+//	
+//	return session({ 
+//		genid: function() {
+//			  return uuid.v4();
+//		},
+//		secret: 'secret key',
+//		key: 'connect.sid',
+//		cookie: { 
+//				  expires: new Date(Date.now() + hour),
+//				  maxAge:  hour 
+//		},
+//		saveUninitialized: true,
+//    resave: true
+//	});
+//};
 module.exports.create = function(){
-	// Session create
-	var hour = 3600000;
-	
-	return session({ 
-		genid: function() {
+    // Session create
+    var hour = 3600000;
+
+    return session({
+			genid: function() {
 			  return uuid.v4();
-		},
-		secret: 'secret key',
-		key: 'connect.sid',
-		cookie: { 
-				  expires: new Date(Date.now() + hour),
-				  maxAge:  hour 
-		},
-		saveUninitialized: true,
-    resave: true
-	});
+			},
+            secret: 'secret key',
+            key: 'connect.sid',
+            cookie: {
+            	secure: false,
+                expires: new Date(Date.now() + hour),
+                maxAge:  hour
+            },
+            saveUninitialized: true,
+            resave: true
+    });
 };
 
 module.exports.register = function(req, res, next){
