@@ -34,25 +34,27 @@ module.exports.create = function(){
 			genid: function() {
 			  return uuid.v4();
 			},
-            secret: 'secret key',
-            key: 'connect.sid',
-            cookie: {
-            	secure: false,
-                expires: new Date(Date.now() + hour),
-                maxAge:  hour
-            },
-            saveUninitialized: true,
-            resave: true
+      secret: 'secret key',
+      key: 'connect.sid',
+      cookie: {
+        	secure: false,
+          expires: new Date(Date.now() + hour),
+          maxAge:  hour
+      },
+      saveUninitialized: true,
+      resave: true
     });
 };
 
 module.exports.register = function(req, res, next){
 	if(!req.session.user){
 		var sess = req.session;
-		sess.user = {credentials: {alias: 'Guest'},
-				     detail:      {first: 'Guest', 
-				    	           last:  'User'}
-			         };
+		sess.user = {
+		  credentials: {alias: 'Guest'},
+			detail:      {first: 'Guest', 
+			              last:  'User'},
+			conID:        uuid.v4()
+		};
 	}
 	return next();
 };
